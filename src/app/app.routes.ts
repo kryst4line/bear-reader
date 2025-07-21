@@ -1,7 +1,7 @@
 import {Routes} from '@angular/router';
-import {HomepageComponent} from './views/homepage/homepage.component';
-import {TimelineComponent} from './views/timeline/timeline.component';
-import {ManagerComponent} from './views/manager/manager.component';
+import {HomepageComponent} from '@views/homepage/homepage.component';
+import {TimelineComponent} from '@views/timeline/timeline.component';
+import {ManagerComponent} from '@views/manager/manager.component';
 
 export const routes: Routes = [
   {
