@@ -23,7 +23,7 @@ export class ManagerComponent {
         this.sourceService.add(feed);
         (this.rssInput()?.nativeElement as HTMLInputElement).value = '';
       },
-      error: err => console.log
+      error: err => console.error
     })
   }
 

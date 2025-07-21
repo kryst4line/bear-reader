@@ -36,9 +36,8 @@ export class TimelineComponent implements OnInit {
     ).subscribe({
       next: value => {
         value.forEach(source => this.feed.push(...source.items));
-        console.log(this.feed)
         this.feed = this.feed.sort((a,b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
-      }, error: err => console.log
+      }, error: err => console.error
     })
   }
 }
