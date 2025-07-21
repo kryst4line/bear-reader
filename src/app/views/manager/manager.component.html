@@ -1,0 +1,25 @@
+<h1>
+  <input
+    #rssInput
+    placeholder="Paste here your RSS link"
+    (keydown.enter)="addSource()"
+  />
+  <button
+    (click)="addSource()"
+  >
+    Add source
+  </button>
+</h1>
+
+<ul
+  class="discover-posts"
+>
+  @for (feed of sources(); track feed.link) {
+    <li>
+      <div>
+        <a>{{feed.title}}</a>
+        <small><span><a>({{feed.url}})</a></span></small>
+      </div>
+    </li>
+  }
+</ul>
