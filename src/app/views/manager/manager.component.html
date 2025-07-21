@@ -17,8 +17,27 @@
   @for (feed of sources(); track feed.link) {
     <li>
       <div>
-        <a>{{feed.title}}</a>
-        <small><span><a>({{feed.url}})</a></span></small>
+        <a
+          [href]="'https://' + (feed.link | url)"
+          target="_blank"
+        >
+          {{feed.title}}
+        </a>
+        <small>
+          <span>
+            <a
+              [href]="'https://' + (feed.link | url)"
+              target="_blank"
+            >
+              ({{feed.url | url}})
+            </a>
+          </span>
+          <small
+            (click)="removeSource(feed)"
+          >
+            (Remove)
+          </small>
+        </small>
       </div>
     </li>
   }

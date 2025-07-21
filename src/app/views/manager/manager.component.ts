@@ -1,15 +1,38 @@
-import {Component, ElementRef, OnInit, viewChild} from '@angular/core';
+import {Component, ElementRef, viewChild} from '@angular/core';
 import {sources, SourceService} from '@services/source.service';
 import {HttpClient} from '@angular/common/http';
 import {RssSource} from '@models/rss-source';
+import {RssFeed} from '@models/rss-feed';
+import {UrlPipe} from '../../pipes/url.pipe';
 
 @Component({
   selector: 'app-homepage',
-  imports: [],
-  templateUrl: './manager.component.html'
+  imports: [
+    UrlPipe
+  ],
+  templateUrl: './manager.component.html',
+  styles: `
+    ul li {
+      div > small > small {
+        opacity: 0;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &:hover {
+        div > small > small {
+          opacity: 1;
+        }
+      }
+    }
+  `
 })
 export class ManagerComponent {
   rssInput = viewChild<ElementRef<HTMLInputElement>>('rssInput');
+  protected readonly sources = sources;
 
   constructor(
     private sourceService: SourceService,
@@ -23,9 +46,11 @@ export class ManagerComponent {
         this.sourceService.add(feed);
         (this.rssInput()?.nativeElement as HTMLInputElement).value = '';
       },
-      error: err => console.error
+      error: console.error
     })
   }
 
-  protected readonly sources = sources;
+  removeSource(feed: RssFeed) {
+    this.sourceService.remove(feed);
+  }
 }

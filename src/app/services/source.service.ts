@@ -27,4 +27,9 @@ export class SourceService {
       this.updateStorage();
     }
   }
+
+  public remove(feed: RssFeed) {
+    sources.update(sources => sources.filter(s => s.url !== feed.url));
+    this.updateStorage();
+  }
 }
