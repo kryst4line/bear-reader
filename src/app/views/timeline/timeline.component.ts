@@ -11,7 +11,6 @@ import {DateAgoPipe} from '../../pipes/date-ago.pipe';
 @Component({
   selector: 'app-homepage',
   imports: [
-    DatePipe,
     UrlPipe,
     DateAgoPipe,
     SlicePipe
