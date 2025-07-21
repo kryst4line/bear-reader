@@ -1,41 +1,47 @@
-<h1>Following feed</h1>
-<ul
-  class="discover-posts"
->
-  @for (item of feed | slice: page * 20: ((page + 1) * 20); track item.link; let i = $index) {
-    <li>
-      <span>#{{i + (page * 20) + 1}}</span>
-      <div>
-        <a
-          [href]="item.link"
-          target="_blank"
-        >
-          {{item.title}}
-        </a>
-        <small>
+@if (sources().length) {
+  <h1>Following feed</h1>
+  <ul
+    class="discover-posts"
+  >
+    @for (item of feed | slice: page * 20: ((page + 1) * 20); track item.link; let i = $index) {
+      <li>
+        <span>#{{i + (page * 20) + 1}}</span>
+        <div>
+          <a
+            [href]="item.link"
+            target="_blank"
+          >
+            {{item.title}}
+          </a>
+          <small>
           <span>
             <a
               [href]="item.link | url"
               target="_blank"
             >({{item.link | url}})</a>
           </span>
-          <br>
-          <small>{{item.pubDate | dateAgo}}</small>
-        </small>
-      </div>
-    </li>
-  }
-</ul>
+            <br>
+            <small>{{item.pubDate | dateAgo}}</small>
+          </small>
+        </div>
+      </li>
+    }
+  </ul>
 
-<p>
-  @if (page > 0) {
-    <a
-      (click)="page = page - 1"
-    >« Previous</a>
-  }
-  @if (feed.length > (page + 1 ) * 20) {
-    <a
-      (click)="page = page + 1"
-    >Next »</a>
-  }
-</p>
+  <p>
+    @if (page > 0) {
+      <a
+        (click)="page = page - 1"
+      >« Previous</a>
+    }
+    @if (feed.length > (page + 1 ) * 20) {
+      <a
+        (click)="page = page + 1"
+      >Next »</a>
+    }
+  </p>
+} @else {
+  <h2>You are not following any blogs yet!</h2>
+
+  <p>Please open <a href="/manage">Manage feeds</a> and add an RSS source.</p>
+}

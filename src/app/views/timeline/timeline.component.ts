@@ -24,6 +24,8 @@ export class TimelineComponent implements OnInit {
   feed: RssItem[] = [];
   page = 0;
 
+  protected readonly sources = sources;
+
   constructor(
     private sourceService: SourceService,
     private httpClient: HttpClient
